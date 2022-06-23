@@ -352,6 +352,9 @@ function receiveSubresource(subresourceExtractor) {
 
     authz.assertAuthorized(req.user, authz.actions.Write, subresource.resource);
 
+    // XXX FIXME
+    if (req.checkContinue) res.writeContinue();
+
     /* Proxy the data through us:
      *
      *    client (browser, CLI, etc) ⟷ us (nextstrain.org) ⟷ upstream source

@@ -31,6 +31,10 @@ const app = require("./src/app");
 app.set("port", port);
 
 const server = http.createServer(app)
+  .on("checkContinue", (req, res) => {
+    req.checkContinue = true;
+    return app(req, res);
+  })
   .on("listening", () => {
     console.log("  -------------------------------------------------------------------------");
     console.log(nextstrainAbout);
